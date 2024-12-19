@@ -4,21 +4,19 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    const storedTasks = localStorage.getItem("tasks");
+    return storedTasks ? JSON.parse(storedTasks) : [];
+  });
   const [taskInput, setTaskInput] = useState("");
   const navigate = useNavigate();
   const createdDate = moment().format("Do MMM YYYY")
 
 
-  useEffect(() => {
-    const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    setTasks(storedTasks);
-  }, []);
+
 
   useEffect(() => {
-    if (tasks.length) {
-      localStorage.setItem("tasks", JSON.stringify(tasks));
-    }
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
   const addTask = () => {
@@ -53,7 +51,7 @@ const Home = () => {
         />
         <button
           onClick={addTask}
-          className="text-white bg-blue-700 hover:bg-blue-800 w-[15%] h-[40px] flex items-center justify-center rounded-[8px]"
+          className="text-white bg-blue-700 hover:bg-blue-800 w-[6vw] h-[40px] flex items-center justify-center rounded-[8px]"
         >
           <Plus size={25} className="mr-2" />
           Add
