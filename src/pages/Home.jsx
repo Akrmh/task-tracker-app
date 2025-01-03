@@ -12,9 +12,6 @@ const Home = () => {
   const navigate = useNavigate();
   const createdDate = moment().format("Do MMM YYYY")
 
-
-
-
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
@@ -41,17 +38,17 @@ const Home = () => {
       <h1 className="text-[2.3rem] font-sans font-bold text-gray-800 mt-[12vh] mb-[5vh]">
         Task Tracker
       </h1>
-      <div className="gap-4 flex">
+      <div className="gap-4 flex max-sm:flex-col p-10 max-sm:items-center">
         <input
           required={"required"}
           value={taskInput}
           onChange={(e) => setTaskInput(e.target.value)}
-          className="w-[38vw] h-[40px] p-4 border-[1px] bg-gray-100 border-gray-400 rounded-md focus:outline focus:outline-gray-300 focus:outline-offset-2"
+          className="w-[38vw] h-[40px] max-sm:w-[80vw] p-4 border-[1px] bg-gray-100 border-gray-400 rounded-md focus:outline focus:outline-gray-300 focus:outline-offset-2"
           placeholder="Write a task"
         />
         <button
           onClick={addTask}
-          className="text-white bg-blue-700 hover:bg-blue-800 w-[6vw] h-[40px] flex items-center justify-center rounded-[8px]"
+          className="text-white bg-blue-700 hover:bg-blue-800 w-[6vw] max-sm:w-[16vw] h-[40px] flex items-center justify-center rounded-[8px]"
         >
           <Plus size={25} className="mr-2" />
           Add
@@ -68,7 +65,7 @@ const Home = () => {
         </div>
       )}
 
-      <div className="flex flex-col gap-2 mt-4 w-[45vw]">
+      <div className="flex flex-col gap-2 mt-4 w-[45vw] max-sm:w-[80vw]">
         {tasks.map(({ id, name }) => (
           <div
             key={id}
